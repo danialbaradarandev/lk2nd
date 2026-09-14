@@ -7,12 +7,15 @@
 
 / {
 	model = "Sony Xperia Z2";
-	compatible = "sony,sirius", "qcom,msm8974", "lk2nd,device";
+	compatible = "sony,sirius", "qcom,msm8974pro", "qcom,msm8974", "lk2nd,device";
 	qcom,msm-id = <218 0x10000>;
 	qcom,board-id = <8 0>;
 	lk2nd,match-cmdline = "* androidboot.hardware=sirius *";
 
 	lk2nd,keys =
-		<KEY_VOLUMEUP   PM_GPIO(5) PM_GPIO_PULL_UP_30>,
-		<KEY_VOLUMEDOWN PM_GPIO(2) PM_GPIO_PULL_UP_30>;
+		<KEY_VOLUMEUP   PM_GPIO(5) PM_GPIO_PULL_UP_1_5>,
+		<KEY_VOLUMEDOWN PM_GPIO(2) PM_GPIO_PULL_UP_1_5>;
 };
+
+#include "msm8974-display-stubs.dtsi"
+#include "msm8974pro-ac-shinano_leo_common.dtsi"
