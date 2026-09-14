@@ -1,0 +1,33 @@
+name: Build lk2nd for MSM8974
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y device-tree-compiler libfdt-dev
+
+      - name: Install ARM toolchain
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
+
+      - name: Verify toolchain
+        run: arm-none-eabi-gcc --version
+
+      - name: Build lk2nd for msm8974
+        run: make TOOLCHAIN_PREFIX=arm-none-eabi- lk2nd-msm8974
+
+      - name: Upload lk2nd artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lk2nd-msm8974
+          path: build-lk2nd-msm8974/lk2nd.img
