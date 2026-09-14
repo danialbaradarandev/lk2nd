@@ -50,6 +50,15 @@
 #include <platform/clock.h>
 #include <platform/gpio.h>
 #include <stdlib.h>
+#include <string.h>
+
+/* Forward declarations for missing functions */
+bool platform_is_8974(void);
+bool platform_is_8974ac(void);
+void mdelay(unsigned long msecs);
+void crypto_eng_cleanup(void);
+struct sdhci_host;
+void sdhci_mode_disable(struct sdhci_host *host);
 
 #define HW_PLATFORM_8994_INTERPOSER    0x3
 
